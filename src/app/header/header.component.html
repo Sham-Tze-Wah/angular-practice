@@ -1,0 +1,65 @@
+<!-- <div class="row">
+    <div class="col">
+        <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                Toggle dropdown
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem>Action - 1</button>
+                <button ngbDropdownItem>Another Action</button>
+                <button ngbDropdownItem>Something else is here</button>
+            </div>
+        </div>
+    </div>
+
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+            <button ngbNavLink>First</button>
+            <ng-template ngbNavContent>First content</ng-template>
+        </li>
+        <li ngbNavItem>
+            <button ngbNavLink>Second</button>
+            <ng-template ngbNavContent>Second content</ng-template>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav"></div>
+</div> -->
+
+<div class="navbar navbar-expand-lg">
+  <div class="nav nav-pills">
+    <a class="navbar-brand" href="#">EmpAcc</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+  <ul class="nav nav-pills"> 
+    <li [ngClass]="['nav-item', 'gap-2', 'mr-auto', activeColor?'active':'inactive']" (onclick)="changeColor()">
+      <a [ngClass]="['nav-link', activeColor?'inactive':'inactive']" href="#">Home Page</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+        aria-expanded="false">Employee Module</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Add Employee</a>
+        <a class="dropdown-item" href="#">Update Employee</a>
+        <a class="dropdown-item" href="#">Delete Employee</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Blacklist Employee</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">User Matrix</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Admin Module</a>
+    </li>
+  </ul>
+  <div class="nav nav-pills collapse navbar-collapse justify-content-end"> 
+    <a href="#" [ngClass]="['nav-link', 'active']">
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+      Logout
+    </a>
+  </div>
+</div>

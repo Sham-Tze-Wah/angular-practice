@@ -1,0 +1,33 @@
+<!-- Row 2: Search Bar -->
+<div>
+    <nav class="navbar navbar-light bg-light justify-content-end">
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
+  </div>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <th>Name</th> 
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Position</th>
+        <th>Year of Experience</th>
+        <th>Achievements</th>
+        <th>Joined Date</th>
+        <th>Resign Date</th>
+    </thead>
+    <tbody class="tbody-light">
+        <tr scope="row" *ngFor="let content of contents">
+            <td>{{content.name}}</td>
+            <td>{{content.age}}</td>
+            <td>{{content.gender}}</td>
+            <td>{{content.position}}</td>
+            <td>{{content.yearOfExperience}}</td>
+            <td>{{content.achievements}}</td>
+            <td>{{content.joinedDate}}</td>
+            <td>{{content.resignDate}}</td>
+        </tr>
+    </tbody>
+</table>
