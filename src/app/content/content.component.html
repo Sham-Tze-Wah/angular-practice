@@ -7,27 +7,32 @@
       </form>
     </nav>
   </div>
+  <div>
+    <button type="button" class="btn btn-primary" (click)="addContent()">Add</button>
+  </div>
 <table class="table table-bordered">
     <thead class="thead-dark">
-        <th>Name</th> 
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Position</th>
-        <th>Year of Experience</th>
-        <th>Achievements</th>
-        <th>Joined Date</th>
-        <th>Resign Date</th>
+        <th>Name</th>
+        <th>IdNo</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Zip</th>
+        <th>Country</th>
     </thead>
     <tbody class="tbody-light">
         <tr scope="row" *ngFor="let content of contents">
-            <td>{{content.name}}</td>
-            <td>{{content.age}}</td>
-            <td>{{content.gender}}</td>
-            <td>{{content.position}}</td>
-            <td>{{content.yearOfExperience}}</td>
-            <td>{{content.achievements}}</td>
-            <td>{{content.joinedDate}}</td>
-            <td>{{content.resignDate}}</td>
+            <td>{{content.mxName}}</td>
+            <td>{{content.mxIdNo}}</td>
+            <td>{{content.mxEmail}}</td>
+            <td>{{content.mxHandPhoneNo}}</td>
+            <td>{{content.mxAddress}}</td>
+            <td>{{content.mxCity}}</td>
+            <td>{{content.mxState}}</td>
+            <td>{{content.mxPostcode}}</td>
+            <td>{{content.mxCountry}}</td>
         </tr>
     </tbody>
 </table>

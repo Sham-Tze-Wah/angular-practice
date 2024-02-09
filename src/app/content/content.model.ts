@@ -4,9 +4,9 @@ export interface ContentModel extends Base{
     /* Employee Details */
     mxName : string;
     mxIdNo : number;
-    mxHandPhoneNo : string;
+    mxHandPhoneNo : number;
     mxEmail : string;
-    mxLoginId? : string;
+    mxLoginId : string | null | undefined;
     mxAccountId : string;
     extendedInfo : string;
     mxNationality : string;
