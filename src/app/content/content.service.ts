@@ -12,7 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ContentService {
 
-  constructor(private sanitizer: DomSanitizer, private httpClient: HttpClient, private spinner: NgxSpinnerService) {}
+  constructor(private sanitizer: DomSanitizer, private spinner: NgxSpinnerService) {}
 
   getContent() : Observable<ContentModel[]> {
     const contents = of(CONTENT);

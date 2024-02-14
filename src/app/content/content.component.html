@@ -1,38 +1,41 @@
 <!-- Row 2: Search Bar -->
 <div>
-    <nav class="navbar navbar-light bg-light justify-content-end">
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </nav>
-  </div>
-  <div>
-    <button type="button" class="btn btn-primary" (click)="addContent()">Add</button>
-  </div>
+  <nav class="navbar navbar-light bg-light justify-content-end">
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+</div>
+<div class="my-2">
+  <button mat-button type="button" class="btn btn-primary" (click)="openContent()">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    Add Info
+  </button>
+</div>
 <table class="table table-bordered">
-    <thead class="thead-dark">
-        <th>Name</th>
-        <th>IdNo</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>City</th>
-        <th>State</th>
-        <th>Zip</th>
-        <th>Country</th>
-    </thead>
-    <tbody class="tbody-light">
-        <tr scope="row" *ngFor="let content of contents">
-            <td>{{content.mxName}}</td>
-            <td>{{content.mxIdNo}}</td>
-            <td>{{content.mxEmail}}</td>
-            <td>{{content.mxHandPhoneNo}}</td>
-            <td>{{content.mxAddress}}</td>
-            <td>{{content.mxCity}}</td>
-            <td>{{content.mxState}}</td>
-            <td>{{content.mxPostcode}}</td>
-            <td>{{content.mxCountry}}</td>
-        </tr>
-    </tbody>
+  <thead class="thead-dark">
+    <th>Name</th>
+    <th>IdNo</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Zip</th>
+    <th>Country</th>
+  </thead>
+  <tbody class="tbody-light">
+    <tr scope="row" *ngFor="let content of contents">
+      <td>{{content.mxName}}</td>
+      <td>{{content.mxIdNo}}</td>
+      <td>{{content.mxEmail}}</td>
+      <td>{{content.mxHandPhoneNo}}</td>
+      <td>{{content.mxAddress}}</td>
+      <td>{{content.mxCity}}</td>
+      <td>{{content.mxState}}</td>
+      <td>{{content.mxPostcode}}</td>
+      <td>{{content.mxCountry}}</td>
+    </tr>
+  </tbody>
 </table>
