@@ -31,3 +31,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 2. npm i @angular/cli@16.2.10 -g
 3. npm i @ng-bootstrap/ng-bootstrap@15.1.2
 4. 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
+5. npm add @ng-select/ng-select@11.2.0
+6. npm add @angular/material
+7. ADD "node_modules/@ng-select/ng-select/themes/default.theme.css" into angular.json => styles
