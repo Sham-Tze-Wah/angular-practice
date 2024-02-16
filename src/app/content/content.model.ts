@@ -18,4 +18,5 @@ export interface ContentModel extends Base{
     mxPostcode? : string;
     mxState? : string;
     mxCountry? : string;
+    mxCitizen? : string;
 }
