@@ -1,3 +1,7 @@
 .mandatory{
     color:red;
 }
+
+.modal-backdrop.backdrop-class-z-index{
+  z-index: 0 !important;
+}

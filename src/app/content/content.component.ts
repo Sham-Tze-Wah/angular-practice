@@ -1,25 +1,27 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {ContentModel} from './content.model';
 import {CONTENT} from '../mock/mock-content';
 import {ContentService} from './content.service';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 import { GenericModel } from '../shared/models/generic.model';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 //import { ToastrService } from 'ngx-toastr';
-
-
 
 @Component({
   selector: 'app-content',
   templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+  styleUrls: ['./content.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ContentComponent implements OnInit{
+  @Input() modalId? : string;
+  private modalElement : any;
   @ViewChild('modalCenter') modalCenter?: ElementRef;
-  @ViewChild('addrTempModal') addrModal?: any;
+  @ViewChild('addrModal') addrModal?: ElementRef;
 
   bankaccountlength: Number = 20;
+  closeResult: string = "Close Result";
 
   content: ContentModel = {};
   contents : ContentModel[] = CONTENT;
@@ -35,12 +37,15 @@ export class ContentComponent implements OnInit{
     {id: '3', name: 'Other', code: 'OTH'}
   ]
 
-  constructor(private contentService: ContentService, public dialog: MatDialog, private modalService: NgbModal) { }
+  constructor(private contentService: ContentService, public dialog: MatDialog, private modalService: NgbModal, private el : ElementRef) {
+    this.modalElement = el.nativeElement;
+   }
 
   ngOnInit(): void {
     this.contentService.getContent().subscribe((contents) => 
       this.contents = contents
       );
+    this.content.mxCitizen = 'LCL';
   }
 
   // openContent(): void{
@@ -85,20 +90,74 @@ export class ContentComponent implements OnInit{
     }
   }
 
+  // openDialog(modalStr: string) {
+  //   console.log(modalStr);
+  //   this.modalService.dismissAll();
+  //   if(modalStr === 'modalCenter'){
+  //     if(this.modalCenter){
+  //       this.modalCenter.nativeElement.style.display = 'block';
+  //       this.modalCenter.nativeElement.classList.add('modal-open');
+  //       this.modalCenter.nativeElement.classList.add('show');
+  //     }
+  //     else{
+  //       console.log("Empty modalCenter: " + modalStr);
+  //     }
+  //   }
+  //   else if(modalStr === 'addrModal'){
+  //     if(this.addrModal){
+  //       this.addrModal.nativeElement.style.display = 'block';
+  //       this.addrModal.nativeElement.classList.add('modal-open');
+  //       this.addrModal.nativeElement.classList.add('show');
+  //     }
+  //     else{
+  //       console.log("Empty modalCenter: " + modalStr);
+  //     }
+  //   }
+  // }
+  openDialog(modal : any){
+    this.modalService.dismissAll();
+    console.log(modal);
+    this.modalService.open(modal, {
+      ariaLabelledBy: 'modal-basic-title',
+      backdrop: 'static',
+      backdropClass: 'backdrop-class-z-index',
+    }
+    ).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
   closeCustDialAndOpenAddrDial(event: any){
     if(this.modalCenter){
       console.log(this.modalCenter);
-      this.modalCenter.nativeElement.click();
-      console.log(this.addrModal);
+      this.modalCenter.nativeElement.style.display = 'none';
+      this.modalCenter.nativeElement.classList.remove('modal-open');
+      this.modalCenter.nativeElement.classList.remove('show');
+      console.log(this.modalCenter);
       if(this.addrModal){
-        console.log("Entered!");
-        this.modalService.open(this.addrModal, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-          console.log(`Closed with: ${result}`);
-        }, (reason) => {
-          console.log(`Dismissed ${reason}`);
-        });
+        console.log(this.addrModal);
+        this.addrModal.nativeElement.style.display = 'block';
+        // this.addrModal.nativeElement.classList.add('modal-open');
+        this.addrModal.nativeElement.classList.add('show');
+        console.log(this.addrModal);
       }
     }
+  }
+
+  closeAddrDial(event: any){
+    console.log(event);
   }
 
   onChangeMxCountry(event: any) {

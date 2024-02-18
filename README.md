@@ -34,3 +34,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 5. npm add @ng-select/ng-select@11.2.0
 6. npm add @angular/material
 7. ADD "node_modules/@ng-select/ng-select/themes/default.theme.css" into angular.json => styles
+8. npm i @danielmoncada/angular-datetime-picker@16.1.0
