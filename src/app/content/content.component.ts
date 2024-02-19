@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 import { GenericModel } from '../shared/models/generic.model';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import{ NgForm, NgModel } from '@angular/forms';
 import * as moment from 'moment';
 //import { ToastrService } from 'ngx-toastr';
 
@@ -20,6 +21,7 @@ export class ContentComponent implements OnInit{
   private modalElement : any;
   @ViewChild('modalCenter') modalCenter?: ElementRef;
   @ViewChild('addrModal') addrModal?: ElementRef;
+  // @ViewChild('custInfoForm', { static: false }) contactForm: NgForm;
 
   bankaccountlength: Number = 20;
   closeResult: string = "Close Result";
@@ -181,5 +183,9 @@ export class ContentComponent implements OnInit{
 
   globalIfChecked(nationality: string | undefined) : Boolean{
     return this.countryList.find(selectedCountry => selectedCountry.name!! === nationality)?.isChecked!!;
+  }
+
+  onSubmit(content: any){
+    console.log(this.content);
   }
 }
