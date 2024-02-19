@@ -30,9 +30,9 @@ export class ContentComponent implements OnInit{
   contents : ContentModel[] = CONTENT;
 
   countryList : GenericModel[] = [
-    {id: '1', name:'Malaysia (MY)', code: 'MY'},
-    {id: '2', name: 'Singapore (SG)', code: 'SG'},
-    {id: '3', name: 'India (IND)', code:'IND'}
+    {id: '1', name:'Malaysia (MY)', code: 'MY', isChecked: false},
+    {id: '2', name: 'Singapore (SG)', code: 'SG', isChecked: false},
+    {id: '3', name: 'India (IND)', code:'IND', isChecked: false}
   ];
 
   citizenshipList : GenericModel[] = [
@@ -171,8 +171,15 @@ export class ContentComponent implements OnInit{
     console.log(event);
   }
 
-  nationality: string[] = [];
+  // nationality: string[] = [];
   onChangeNationality(event: any){
-    console.log(event);
+    // console.log(event);
+    if(event.target.checked){
+      this.countryList.find(selectedCountry => selectedCountry.name!! === event.target.value)!!.isChecked = true;
+    }
+  }
+
+  globalIfChecked(nationality: string | undefined) : Boolean{
+    return this.countryList.find(selectedCountry => selectedCountry.name!! === nationality)?.isChecked!!;
   }
 }

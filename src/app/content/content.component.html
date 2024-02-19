@@ -72,11 +72,19 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form ngNativeValidate>
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
             <label for="mx-name" class="col-form-label">Customer Name</label>
-            <input type="text" class="form-control" id="mx-name" name="mx-name" [(ngModel)]="content.mxName">
+            <input type="text" class="form-control" id="mx-name" name="mx-name" [(ngModel)]="content.mxName" [required]="true" #customerName="ngModel">
+            <!-- <div *ngIf="!customerName?.valid && (customerName?.dirty || customerName?.touched)" class="error">
+              <div *ngIf="customerName.errors!!.required">
+                Customer Name is required
+              </div>
+              <div *ngIf="customerName.errors.minlength">
+                Customer Name Minimum Length is {{customerName.errors.minlength?.requiredLength}}
+              </div>
+            </div> -->
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
@@ -133,7 +141,7 @@
             <label for="mx-nationality" class="col-form-label">Nationality</label>
             <div *ngFor="let nationality of countryList">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="mx-nationality" (change)="onChangeNationality($event)">{{nationality.name}}
+                <input class="form-check-input" type="checkbox" name="mx-nationality" [value]="nationality.name" (change)="onChangeNationality($event)" [checked]="globalIfChecked(nationality.name)">{{nationality.name}}
               </div>
             </div>
           </div>
@@ -153,7 +161,7 @@
           </div>
           <div class="form-group col pl-1">
             <label for="mx-address-4" class="col-form-label">Address 4</label>
-            <input type="text" class="form-control" id="mx-address-4" name="mx-address-4" [(ngModel)]="content.mxAddress4">
+            <input type="text" class="form-control" id="mx-address-4" name="mx-address-4" [(ngModel)]="content.mxAddress4" [disabled]="true">
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
@@ -192,7 +200,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#modalCenter" (click)="modal.dismiss('Cross click')">Close</button>
-        <button type="button" class="btn btn-primary" (click)="openDialog(addrTempModal)"
+        <button type="submit" class="btn btn-primary" (click)="openDialog(addrTempModal)"
         >Next <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
         </button>
       </div>

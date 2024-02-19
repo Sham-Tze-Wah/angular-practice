@@ -5,6 +5,7 @@ export interface GenericModel extends Base {
   description?: string;
   code?: string;
   disabled?: boolean;
+  isChecked?: boolean;
 }
 
 export interface EnumModel {
