@@ -26,6 +26,7 @@
     "@material/dialog": "^14.0.0",
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "@ng-select/ng-select": "^11.2.0",
+    "moment": "^2.30.1",
     "ng": "^0.0.0",
     "ngx-spinner": "^16.0.2",
     "rxjs": "~7.8.0",

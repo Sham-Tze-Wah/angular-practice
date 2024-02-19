@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { DialogFormComponent } from '../dialog-form/dialog-form.component';
 import { GenericModel } from '../shared/models/generic.model';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import * as moment from 'moment';
 //import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -22,6 +23,8 @@ export class ContentComponent implements OnInit{
 
   bankaccountlength: Number = 20;
   closeResult: string = "Close Result";
+  maxDate = moment().toDate();
+  minDate = moment().subtract(150, 'years').toDate();
 
   content: ContentModel = {};
   contents : ContentModel[] = CONTENT;
@@ -165,6 +168,11 @@ export class ContentComponent implements OnInit{
   }
 
   onChangeMxCitizenship(event: any) {
+    console.log(event);
+  }
+
+  nationality: string[] = [];
+  onChangeNationality(event: any){
     console.log(event);
   }
 }

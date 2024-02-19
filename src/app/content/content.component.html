@@ -41,7 +41,7 @@
     </tr>
   </tbody>
 </table>
-<div class="form-group col pl-1">
+<!-- <div class="form-group col pl-1">
   <span class="mandatory" *ngIf="true">*&nbsp;</span>
   <label for="mx-test" class="col-form-label">Test Date</label>
     <div class="input-group-prepend" [owlDateTimeTrigger]="dtTest">
@@ -58,7 +58,7 @@
       </div>
     </div>
     <owl-date-time class="date-picker-show-in-dialog" #dtTest></owl-date-time>
-</div>
+</div> -->
 <!-- Form Modal/Dialog Customer Info-->
 <ng-template #modalCenter let-modal>
 <!-- <div class="modal fade" id="modalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -81,25 +81,25 @@
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
             <label for="mx-id-no" class="col-form-label">Id Number</label>
-            <input type="text" class="form-control" id="mx-id-no" [maxLength]="bankaccountlength" pattern="[0-9]+"
-              (keypress)="onlyNumber($event)" (paste)="onPastenumeric($event)">
+            <input type="text" class="form-control" id="mx-id-no" name="mx-id-no" [maxLength]="bankaccountlength" pattern="[0-9]+"
+              (keypress)="onlyNumber($event)" (paste)="onPastenumeric($event)" [(ngModel)]="content.mxIdNo">
           </div>
           <div class="form-group col pl-1">
             <label for="mx-hand-phone" class="col-form-label">Hand Phone No</label>
-            <input type="text" class="form-control" id="mx-hand-phone">
+            <input type="text" class="form-control" id="mx-hand-phone" name="mx-hand-phone" [(ngModel)]="content.mxHandPhoneNo">
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
             <label for="mx-email" class="col-form-label">Email</label>
-            <input type="text" class="form-control" id="mx-email">
+            <input type="text" class="form-control" id="mx-email" name="mx-email" [(ngModel)]="content.mxEmail">
           </div>
           <div class="form-group col pl-1">
             <label for="mx-login-id" class="col-form-label">Login Id</label>
-            <input type="text" class="form-control" id="mx-login-id">
+            <input type="text" class="form-control" id="mx-login-id" name="mx-login-id" [(ngModel)]="content.mxLoginId">
           </div>
           <div class="form-group col pl-1">
             <label for="mx-acc-id" class="col-form-label">Account Id</label>
-            <input type="text" class="form-control" id="mx-acc-id">
+            <input type="text" class="form-control" id="mx-acc-id" name="mx-acc-id" [(ngModel)]="content.mxAccountId">
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory" *ngIf="true">*&nbsp;</span>
@@ -133,53 +133,55 @@
             <label for="mx-nationality" class="col-form-label">Nationality</label>
             <div *ngFor="let nationality of countryList">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox">{{nationality.name}}
+                <input class="form-check-input" type="checkbox" name="mx-nationality" (change)="onChangeNationality($event)">{{nationality.name}}
               </div>
             </div>
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
             <label for="mx-address" class="col-form-label">Address</label>
-            <input type="text" class="form-control" id="mx-address">
+            <textarea class="form-control" name="mx-address" [(ngModel)]="content.mxAddress"></textarea>
+            <!-- <input type="text" class="form-control" id="mx-address"> -->
           </div>
           <div class="form-group col pl-1">
             <label for="mx-address-2" class="col-form-label">Address 2</label>
-            <input type="text" class="form-control" id="mx-address-2">
+            <input type="text" class="form-control" id="mx-address-2" name="mx-address-2" [(ngModel)]="content.mxAddress2">
           </div>
           <div class="form-group col pl-1">
             <label for="mx-address-3" class="col-form-label">Address 3</label>
-            <input type="text" class="form-control" id="mx-address-3">
+            <input type="text" class="form-control" id="mx-address-3" name="mx-address-3" [(ngModel)]="content.mxAddress3">
           </div>
           <div class="form-group col pl-1">
             <label for="mx-address-4" class="col-form-label">Address 4</label>
-            <input type="text" class="form-control" id="mx-address-4">
+            <input type="text" class="form-control" id="mx-address-4" name="mx-address-4" [(ngModel)]="content.mxAddress4">
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
             <label for="mx-postcode" class="col-form-label">Postcode</label>
-            <input type="text" class="form-control" id="mx-postcode">
+            <input type="text" class="form-control" id="mx-postcode" name="mx-postcode" [(ngModel)]="content.mxPostcode">
           </div>
           <div class="form-group col pl-1">
             <label for="mx-city" class="col-form-label">City</label>
-            <input type="text" class="form-control" id="mx-city">
+            <input type="text" class="form-control" id="mx-city" name="mx-city" [(ngModel)]="content.mxCity">
           </div>
           <div class="form-group col pl-1">
             <label for="mx-state" class="col-form-label">State</label>
-            <input type="text" class="form-control" id="mx-state">
+            <input type="text" class="form-control" id="mx-state" name="mx-state" [(ngModel)]="content.mxState">
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory" *ngIf="true">*&nbsp;</span>
             <label for="mx-dob" class="col-form-label">Date Of Birth</label>
-            <input 
+              <div class="input-group-prepend" [owlDateTimeTrigger]="dtDob">
+                <input 
                 type="text"
                 name="mx-dob"
                 [(ngModel)]="content.dateOfBirth"
                 class="form-control"
                 [owlDateTimeTrigger]="dtDob"
                 [owlDateTime]="dtDob"
+                [max]="maxDate"
+                [min]="minDate"
               />
-              <div class="input-group-prepend" [owlDateTimeTrigger]="dtDob">
-                
                 <div class="input-group-text">
                   <i class="fa fa-calendar"></i>
                 </div>

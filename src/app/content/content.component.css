@@ -5,3 +5,7 @@
 .modal-backdrop.backdrop-class-z-index{
   z-index: 0 !important;
 }
+
+.modal{
+  z-index: 999 !important;
+}
