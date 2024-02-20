@@ -25,7 +25,7 @@ export class ContentComponent implements OnInit{
 
   bankaccountlength: Number = 20;
   closeResult: string = "Close Result";
-  maxDate = moment().toDate();
+  maxDate = moment().add(1,'minute').toDate();
   minDate = moment().subtract(150, 'years').toDate();
 
   content: ContentModel = {};
@@ -187,5 +187,9 @@ export class ContentComponent implements OnInit{
 
   onSubmit(content: any){
     console.log(this.content);
+  }
+
+  onChangeDob(event: any){
+    console.log(event);
   }
 }

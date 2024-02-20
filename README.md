@@ -37,3 +37,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 8. npm i @danielmoncada/angular-datetime-picker@16.1.0
 9. ADD "node_modules/@danielmoncada/angular-datetime-picker/assets/style/picker.min.css" into angular.json => styles
 10. npm i moment
+11. npm install @danielmoncada/angular-datetime-picker-moment-adapter@3.0.1

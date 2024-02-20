@@ -203,12 +203,24 @@
                 [owlDateTime]="dtDob"
                 [max]="maxDate"
                 [min]="minDate"
+                #selectedDob="ngModel"
+                (selectionchange)="onChangeDob($event)"
+                (ngModelChange)="onChangeDob($event)"
               />
                 <div class="input-group-text">
                   <i class="fa fa-calendar"></i>
                 </div>
               </div>
               <owl-date-time #dtDob></owl-date-time>
+              <div *ngIf="selectedDob.invalid">
+                Invalid Date Time Format. It should be like this: 2024-02-19 12:15PM
+            </div>
+            <div *ngIf="selectedDob.errors?.['owlDateTimeParse']">
+              Invalid Owl Date Time Parse Error.
+            </div>
+            <div *ngIf="selectedDob.invalid && selectedDob.errors?.['owlDateTimeMax']">
+              Date Time value must before {{maxDate | date: 'medium'}}
+          </div>
           </div>
         </form>
       </div>
