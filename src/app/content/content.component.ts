@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {ContentModel} from './content.model';
 import {CONTENT} from '../mock/mock-content';
 import {ContentService} from './content.service';
@@ -16,8 +16,9 @@ import * as moment from 'moment';
   styleUrls: ['./content.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class ContentComponent implements OnInit{
+export class ContentComponent implements OnInit, AfterViewInit{
   @Input() modalId? : string;
+  @Input() ntnChkboxErrorMsg : boolean = false; //control all the mandatory checkbox not to show first time when load the page
   private modalElement : any;
   @ViewChild('modalCenter') modalCenter?: ElementRef;
   @ViewChild('addrModal') addrModal?: ElementRef;
@@ -51,6 +52,11 @@ export class ContentComponent implements OnInit{
       this.contents = contents
       );
     this.content.mxCitizen = 'LCL';
+    console.log(this.ntnChkboxErrorMsg);
+  }
+
+  ngAfterViewInit(): void {
+    //this.checkboxErrorMsg = false;
   }
 
   // openContent(): void{
@@ -121,7 +127,6 @@ export class ContentComponent implements OnInit{
   // }
   openDialog(modal : any){
     this.modalService.dismissAll();
-    console.log(modal);
     this.modalService.open(modal, {
       ariaLabelledBy: 'modal-basic-title',
       backdrop: 'static',
@@ -144,52 +149,62 @@ export class ContentComponent implements OnInit{
     }
   }
 
-  closeCustDialAndOpenAddrDial(event: any){
-    if(this.modalCenter){
-      console.log(this.modalCenter);
-      this.modalCenter.nativeElement.style.display = 'none';
-      this.modalCenter.nativeElement.classList.remove('modal-open');
-      this.modalCenter.nativeElement.classList.remove('show');
-      console.log(this.modalCenter);
-      if(this.addrModal){
-        console.log(this.addrModal);
-        this.addrModal.nativeElement.style.display = 'block';
-        // this.addrModal.nativeElement.classList.add('modal-open');
-        this.addrModal.nativeElement.classList.add('show');
-        console.log(this.addrModal);
-      }
-    }
-  }
+  // closeCustDialAndOpenAddrDial(event: any){
+  //   if(this.modalCenter){
+  //     this.modalCenter.nativeElement.style.display = 'none';
+  //     this.modalCenter.nativeElement.classList.remove('modal-open');
+  //     this.modalCenter.nativeElement.classList.remove('show');
+  //     if(this.addrModal){
+  //       this.addrModal.nativeElement.style.display = 'block';
+  //       // this.addrModal.nativeElement.classList.add('modal-open');
+  //     }
+  //   }
+  // }
 
   closeAddrDial(event: any){
-    console.log(event);
+    // console.log(event);
   }
 
   onChangeMxCountry(event: any) {
-    console.log(event);
+    // console.log(event);
   }
 
   onChangeMxCitizenship(event: any) {
-    console.log(event);
+    // console.log(event);
   }
 
   // nationality: string[] = [];
   onChangeNationality(event: any){
-    // console.log(event);
     if(event.target.checked){
       this.countryList.find(selectedCountry => selectedCountry.name!! === event.target.value)!!.isChecked = true;
+      this.ntnChkboxErrorMsg = false;
     }
+    else{
+      this.countryList.find(selectedCountry => selectedCountry.name!! === event.target.value)!!.isChecked = false;
+      if(!this.globalAtLeastOneChecked()){
+        this.ntnChkboxErrorMsg = true;
+      }
+    } 
   }
 
   globalIfChecked(nationality: string | undefined) : Boolean{
     return this.countryList.find(selectedCountry => selectedCountry.name!! === nationality)?.isChecked!!;
   }
 
+  globalAtLeastOneChecked(){
+    for(let country of this.countryList){
+      if(country.isChecked){
+        return true;
+      }
+    }
+    return false;
+  }
+
   onSubmit(content: any){
-    console.log(this.content);
+    
   }
 
   onChangeDob(event: any){
-    console.log(event);
+    
   }
 }

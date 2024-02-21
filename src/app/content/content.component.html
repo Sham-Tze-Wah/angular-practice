@@ -149,23 +149,17 @@
                 Other
               </label>
             </div>
-            <div *ngIf="!citizen?.valid" class="error">
-              Citizenship is required
-            </div>
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
             <label for="mx-nationality" class="col-form-label">Nationality</label>
             <div *ngFor="let nationality of countryList">
               <div class="form-check">
-                <input class="form-check-input" 
-                type="checkbox" 
-                name="mx-nationality" 
-                [value]="nationality.name" 
-                (change)="onChangeNationality($event)" 
-                [checked]="globalIfChecked(nationality.name)" 
-                >{{nationality.name}}
+                <input class="form-check-input" type="checkbox" name="mx-nationality" [value]="nationality.name" (change)="onChangeNationality($event)" [checked]="globalIfChecked(nationality.name)" />{{nationality.name}}
               </div>
+            </div>
+            <div *ngIf="!globalAtLeastOneChecked() && ntnChkboxErrorMsg" class="error-messages">
+              Please select at least one country.
             </div>
           </div>
           <div class="form-group col pl-1">
@@ -228,7 +222,7 @@
               Invalid Owl Date Time Parse Error.
             </div>
             <div *ngIf="selectedDob.invalid && selectedDob.errors?.['owlDateTimeMax']">
-              Date Time value must before {{maxDate | date: 'medium'}}
+              Date Time value must before {{maxDate  | date: 'medium'}}
           </div>
           </div>
         </form>
@@ -236,7 +230,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#modalCenter" (click)="modal.dismiss('Cross click')">Close</button>
         <button type="button" class="btn btn-primary" (click)="openDialog(addrTempModal)" 
-        [disabled]="!custInfoForm.valid"
+        [disabled]="!custInfoForm.valid || !globalAtLeastOneChecked()"
         >Next <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
         </button>
       </div>
