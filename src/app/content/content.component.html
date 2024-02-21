@@ -138,16 +138,19 @@
               (change)="onChangeMxCitizenship($event)">
             </ng-select> -->
             <div class="form-check">
-              <input class="form-check-input" id="local-citizen" type="radio" name="mx-citizen" value="LCL" [(ngModel)]="content.mxCitizen" [checked]="content.mxCitizen === 'LCL'">
+              <input class="form-check-input" id="local-citizen" type="radio" name="mx-citizen" value="LCL" [(ngModel)]="content.mxCitizen" [checked]="content.mxCitizen === 'LCL'" #citizen="ngModel" required>
               <label class="form-check-label">
                 Local
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" id="other-citizen" type="radio" name="mx-citizen" value="OTH" [(ngModel)]="content.mxCitizen">
+              <input class="form-check-input" id="other-citizen" type="radio" name="mx-citizen" value="OTH" [(ngModel)]="content.mxCitizen" #citizen="ngModel" required>
               <label class="form-check-label">
                 Other
               </label>
+            </div>
+            <div *ngIf="!citizen?.valid" class="error">
+              Citizenship is required
             </div>
           </div>
           <div class="form-group col pl-1">
@@ -155,7 +158,13 @@
             <label for="mx-nationality" class="col-form-label">Nationality</label>
             <div *ngFor="let nationality of countryList">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="mx-nationality" [value]="nationality.name" (change)="onChangeNationality($event)" [checked]="globalIfChecked(nationality.name)">{{nationality.name}}
+                <input class="form-check-input" 
+                type="checkbox" 
+                name="mx-nationality" 
+                [value]="nationality.name" 
+                (change)="onChangeNationality($event)" 
+                [checked]="globalIfChecked(nationality.name)" 
+                >{{nationality.name}}
               </div>
             </div>
           </div>
