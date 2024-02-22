@@ -12,10 +12,18 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class ContentService {
 
-  constructor(private sanitizer: DomSanitizer, private spinner: NgxSpinnerService) {}
+  private baseURL = `http://localhost:3000/api`;
 
-  getContent() : Observable<ContentModel[]> {
-    const contents = of(CONTENT);
-    return contents;
+  constructor(private sanitizer: DomSanitizer, private spinner: NgxSpinnerService, private http: HttpClient) {}
+
+  getContent() : Observable<any> {
+    // const contents = of(CONTENT);
+    // return contents;
+    return this.http.get(`${this.baseURL}/getAll`)
+  }
+
+  postContent(content: ContentModel): Observable<any> {
+    console.log(content);
+    return this.http.post(`${this.baseURL}/post`, content)
   }
 }

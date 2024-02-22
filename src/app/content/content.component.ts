@@ -19,7 +19,7 @@ import * as moment from 'moment';
 export class ContentComponent implements OnInit, AfterViewInit{
   @Input() modalId? : string;
   @Input() ntnChkboxErrorMsg : boolean = false; //control all the mandatory checkbox not to show first time when load the page
-  private modalElement : any;
+  // private modalElement : any;
   @ViewChild('modalCenter') modalCenter?: ElementRef;
   @ViewChild('addrModal') addrModal?: ElementRef;
   // @ViewChild('custInfoForm', { static: false }) contactForm: NgForm;
@@ -43,8 +43,8 @@ export class ContentComponent implements OnInit, AfterViewInit{
     {id: '3', name: 'Other', code: 'OTH'}
   ]
 
-  constructor(private contentService: ContentService, public dialog: MatDialog, private modalService: NgbModal, private el : ElementRef) {
-    this.modalElement = el.nativeElement;
+  constructor(private contentService: ContentService, public dialog: MatDialog, private modalService: NgbModal) {
+    
    }
 
   ngOnInit(): void {
@@ -206,5 +206,17 @@ export class ContentComponent implements OnInit, AfterViewInit{
 
   onChangeDob(event: any){
     
+  }
+
+  saveCustInfo(){
+    this.content.mxNationality = this.countryList.map(selectedCountry => {
+      if(selectedCountry.isChecked){
+        return selectedCountry.name;
+      }
+      return '';
+    })?.join(',');
+    
+    console.log(this.content.mxNationality);
+    this.contentService.postContent(this.content);
   }
 }
