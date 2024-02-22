@@ -22,6 +22,7 @@ export class ContentComponent implements OnInit, AfterViewInit{
   // private modalElement : any;
   @ViewChild('modalCenter') modalCenter?: ElementRef;
   @ViewChild('addrModal') addrModal?: ElementRef;
+  @ViewChild('dtLeave', {static: true}) dtLeave?: ElementRef;
   // @ViewChild('custInfoForm', { static: false }) contactForm: NgForm;
 
   bankaccountlength: Number = 20;
@@ -205,7 +206,7 @@ export class ContentComponent implements OnInit, AfterViewInit{
   }
 
   onChangeDob(event: any){
-    
+    console.log(this.dtLeave);
   }
 
   saveCustInfo(){
@@ -217,6 +218,6 @@ export class ContentComponent implements OnInit, AfterViewInit{
     })?.join(',');
     
     console.log(this.content.mxNationality);
-    this.contentService.postContent(this.content);
+    // this.contentService.postContent(this.content);
   }
 }

@@ -14,16 +14,18 @@ export class ContentService {
 
   private baseURL = `http://localhost:3000/api`;
 
-  constructor(private sanitizer: DomSanitizer, private spinner: NgxSpinnerService, private http: HttpClient) {}
+  constructor(private sanitizer: DomSanitizer, private spinner: NgxSpinnerService, 
+    // private http: HttpClient
+    ) {}
 
   getContent() : Observable<any> {
-    // const contents = of(CONTENT);
-    // return contents;
-    return this.http.get(`${this.baseURL}/getAll`)
+    const contents = of(CONTENT);
+    return contents;
+    // return this.http.get(`${this.baseURL}/getAll`)
   }
 
-  postContent(content: ContentModel): Observable<any> {
-    console.log(content);
-    return this.http.post(`${this.baseURL}/post`, content)
-  }
+  // postContent(content: ContentModel): Observable<any> {
+  //   console.log(content);
+  //   return this.http.post(`${this.baseURL}/post`, content)
+  // }
 }

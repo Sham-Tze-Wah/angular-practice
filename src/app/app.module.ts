@@ -28,9 +28,9 @@ import { OwlMomentDateTimeModule } from '@danielmoncada/angular-datetime-picker-
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
 export const MY_MOMENT_FORMATS = {
-  parseInput: 'L HH:mm A',
-  fullPickerInput: 'L HH:mm A',
-  datePickerInput: 'L HH:mm A',
+  parseInput: 'DD/MM/yyyy HH:mm A',
+  fullPickerInput: 'DD/MM/yyyy HH:mm A',
+  datePickerInput: 'DD/MM/yyyy HH:mm A',
   timePickerInput: 'LT',
   monthYearLabel: 'MMM YYYY',
   dateA11yLabel: 'LL',

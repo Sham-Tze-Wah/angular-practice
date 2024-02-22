@@ -72,7 +72,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form ngNativeValidate #custInfoForm="ngForm" (ngSubmit)="onSubmit(custInfoForm)">
+        <form ngNativeValidate #custInfoForm="ngForm">
           <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
             <label for="mx-name" class="col-form-label">Customer Name</label>
@@ -101,10 +101,6 @@
             </div>
           </div>
           <div class="form-group col pl-1">
-            <label for="mx-hand-phone" class="col-form-label">Hand Phone No</label>
-            <input type="text" class="form-control" id="mx-hand-phone" name="mx-hand-phone" [(ngModel)]="content.mxHandPhoneNo">
-          </div>
-          <div class="form-group col pl-1">
             <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
             <label for="mx-email" class="col-form-label">Email</label>
             <input type="text" class="form-control" id="mx-email" name="mx-email" [(ngModel)]="content.mxEmail" required email
@@ -113,15 +109,109 @@
               <div *ngIf="email.errors?.['required']" class="error-messages">Email is required</div>
               <div *ngIf="email.errors?.['email']" class="error-messages">Email is invalid</div>
             </div>
-
           </div>
           <div class="form-group col pl-1">
-            <label for="mx-login-id" class="col-form-label">Login Id</label>
-            <input type="text" class="form-control" id="mx-login-id" name="mx-login-id" [(ngModel)]="content.mxLoginId">
+            <!-- <span class="mandatory" *ngIf="true">*&nbsp;</span> -->
+            <label for="mx-dob" class="col-form-label">Date Of Birth</label>
+              <div class="input-group-prepend" [owlDateTimeTrigger]="dtDob">
+                <input 
+                type="text"
+                name="mx-dob"
+                [(ngModel)]="content.dateOfBirth"
+                style="background-color: white;"
+                class="form-control"
+                [owlDateTimeTrigger]="dtDob"
+                [owlDateTime]="dtDob"
+                [max]="maxDate"
+                [min]="minDate"
+                #selectedDob="ngModel"
+                (selectionchange)="onChangeDob($event)"
+                (ngModelChange)="onChangeDob($event)"
+                readonly
+              />
+                <div class="input-group-text">
+                  <i class="fa fa-calendar"></i>
+                </div>
+              </div>
+              <owl-date-time #dtDob></owl-date-time>
+              <div *ngIf="selectedDob.invalid">
+                Invalid Date Time Format. It should be like this: 2024-02-19 12:15PM
+            </div>
+            <div *ngIf="selectedDob.errors?.['owlDateTimeParse']">
+              Invalid Owl Date Time Parse Error.
+            </div>
+            <div *ngIf="selectedDob.invalid && selectedDob.errors?.['owlDateTimeMax']">
+              Date Time value must before {{maxDate  | date: 'medium'}}
+          </div>
           </div>
           <div class="form-group col pl-1">
-            <label for="mx-acc-id" class="col-form-label">Account Id</label>
-            <input type="text" class="form-control" id="mx-acc-id" name="mx-acc-id" [(ngModel)]="content.mxAccountId">
+            <span class="mandatory" *ngIf="true">*&nbsp;</span>
+            <label for="mx-joined" class="col-form-label">Joined Date</label>
+              <div class="input-group-prepend" [owlDateTimeTrigger]="dtJoined">
+                <input 
+                type="text"
+                name="mx-joined"
+                [(ngModel)]="content.joinedDate"
+                style="background-color: white;"
+                class="form-control"
+                [owlDateTimeTrigger]="dtJoined"
+                [owlDateTime]="dtJoined"
+                [max]="this.content.leaveDate !== null && this.content.leaveDate !== undefined ? this.content.leaveDate : maxDate"
+                [min]="minDate"
+                #selectedDtJoined="ngModel"
+                (selectionchange)="onChangeDob($event)"
+                (ngModelChange)="onChangeDob($event)"
+                readonly
+                required
+              />
+                <div class="input-group-text">
+                  <i class="fa fa-calendar"></i>
+                </div>
+              </div>
+              <owl-date-time #dtJoined></owl-date-time>
+              <div *ngIf="selectedDtJoined.invalid && (selectedDtJoined?.dirty || selectedDtJoined?.touched)">
+                Invalid Date Time Format. It should be like this: 2024-02-19 12:15PM
+            </div>
+            <div *ngIf="selectedDtJoined.errors?.['owlDateTimeParse']">
+              Invalid Owl Date Time Parse Error.
+            </div>
+            <div *ngIf="selectedDtJoined.invalid && selectedDtJoined.errors?.['owlDateTimeMax']">
+              Date Time value must before {{maxDate  | date: 'medium'}}
+          </div>
+          </div>
+          <div class="form-group col pl-1">
+            <!-- <span class="mandatory" *ngIf="true">*&nbsp;</span> -->
+            <label for="mx-leave" class="col-form-label">Leave Date</label>
+              <div class="input-group-prepend" [owlDateTimeTrigger]="dtLeave">
+                <input 
+                type="text"
+                name="mx-leave"
+                [(ngModel)]="content.leaveDate"
+                style="background-color: white;"
+                class="form-control"
+                [owlDateTimeTrigger]="dtLeave"
+                [owlDateTime]="dtLeave"
+                [max]="maxDate"
+                [min]="this.content.joinedDate !== null && this.content.joinedDate !== undefined ? this.content.joinedDate : minDate"
+                #selectedDtLeave="ngModel"
+                (selectionchange)="onChangeDob($event)"
+                (ngModelChange)="onChangeDob($event)"
+                readonly
+              />
+                <div class="input-group-text">
+                  <i class="fa fa-calendar"></i>
+                </div>
+              </div>
+              <owl-date-time #dtLeave></owl-date-time>
+              <div *ngIf="selectedDtLeave.invalid">
+                Invalid Date Time Format. It should be like this: 2024-02-19 12:15PM
+            </div>
+            <div *ngIf="selectedDtLeave.errors?.['owlDateTimeParse']">
+              Invalid Owl Date Time Parse Error.
+            </div>
+            <div *ngIf="selectedDtLeave.invalid && selectedDtLeave.errors?.['owlDateTimeMax']">
+              Date Time value must before {{maxDate  | date: 'medium'}}
+          </div>
           </div>
           <div class="form-group col pl-1">
             <span class="mandatory" *ngIf="true">*&nbsp;</span>
@@ -162,69 +252,6 @@
               Please select at least one country.
             </div>
           </div>
-          <div class="form-group col pl-1">
-            <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
-            <label for="mx-address" class="col-form-label">Address</label>
-            <textarea class="form-control" name="mx-address" [(ngModel)]="content.mxAddress" required></textarea>
-            <!-- <input type="text" class="form-control" id="mx-address"> -->
-          </div>
-          <div class="form-group col pl-1">
-            <label for="mx-address-2" class="col-form-label">Address 2</label>
-            <input type="text" class="form-control" id="mx-address-2" name="mx-address-2" [(ngModel)]="content.mxAddress2">
-          </div>
-          <div class="form-group col pl-1">
-            <label for="mx-address-3" class="col-form-label">Address 3</label>
-            <input type="text" class="form-control" id="mx-address-3" name="mx-address-3" [(ngModel)]="content.mxAddress3">
-          </div>
-          <div class="form-group col pl-1">
-            <label for="mx-address-4" class="col-form-label">Address 4</label>
-            <input type="text" class="form-control" id="mx-address-4" name="mx-address-4" [(ngModel)]="content.mxAddress4" [disabled]="true">
-          </div>
-          <div class="form-group col pl-1">
-            <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
-            <label for="mx-postcode" class="col-form-label">Postcode</label>
-            <input type="text" class="form-control" id="mx-postcode" name="mx-postcode" [(ngModel)]="content.mxPostcode" required>
-          </div>
-          <div class="form-group col pl-1">
-            <label for="mx-city" class="col-form-label">City</label>
-            <input type="text" class="form-control" id="mx-city" name="mx-city" [(ngModel)]="content.mxCity">
-          </div>
-          <div class="form-group col pl-1">
-            <label for="mx-state" class="col-form-label">State</label>
-            <input type="text" class="form-control" id="mx-state" name="mx-state" [(ngModel)]="content.mxState">
-          </div>
-          <div class="form-group col pl-1">
-            <!-- <span class="mandatory" *ngIf="true">*&nbsp;</span> -->
-            <label for="mx-dob" class="col-form-label">Date Of Birth</label>
-              <div class="input-group-prepend" [owlDateTimeTrigger]="dtDob">
-                <input 
-                type="text"
-                name="mx-dob"
-                [(ngModel)]="content.dateOfBirth"
-                class="form-control"
-                [owlDateTimeTrigger]="dtDob"
-                [owlDateTime]="dtDob"
-                [max]="maxDate"
-                [min]="minDate"
-                #selectedDob="ngModel"
-                (selectionchange)="onChangeDob($event)"
-                (ngModelChange)="onChangeDob($event)"
-              />
-                <div class="input-group-text">
-                  <i class="fa fa-calendar"></i>
-                </div>
-              </div>
-              <owl-date-time #dtDob></owl-date-time>
-              <div *ngIf="selectedDob.invalid">
-                Invalid Date Time Format. It should be like this: 2024-02-19 12:15PM
-            </div>
-            <div *ngIf="selectedDob.errors?.['owlDateTimeParse']">
-              Invalid Owl Date Time Parse Error.
-            </div>
-            <div *ngIf="selectedDob.invalid && selectedDob.errors?.['owlDateTimeMax']">
-              Date Time value must before {{maxDate  | date: 'medium'}}
-          </div>
-          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -253,69 +280,48 @@
         </div>
         <div class="modal-body">
           <form>
-            <div class="form-group mx-2">
-              <span class="mandatory" *ngIf="true">*&nbsp;</span>
-              <label for="mx-country" class="col-form-label">Country</label>
-              <ng-select placeholder="Select Country" [items]="countryList" bindLabel="name" bindValue="code"
-                name="mx-country" id="mx-country" [(ngModel)]="content.mxCountry" (change)="onChangeMxCountry($event)">
-              </ng-select>
+            <div class="form-group col pl-1">
+              <label for="mx-hand-phone" class="col-form-label">Hand Phone No</label>
+              <input type="text" class="form-control" id="mx-hand-phone" name="mx-hand-phone" [(ngModel)]="content.mxHandPhoneNo">
             </div>
-            <div class="form-group mx-2">
-              <span class="mandatory" *ngIf="true">*&nbsp;</span>
-              <label for="mx-citizen" class="col-form-label">Citizenship</label>
-              <!-- <ng-select placeholder="Select Citizenship" [items]="citizenshipList" bindLabel="name" bindValue="code"
-                name="mx-citizen" id="mx-citizen" [(ngModel)]="content.mxCitizen"
-                (change)="onChangeMxCitizenship($event)">
-              </ng-select> -->
-              <div class="form-check">
-                <input class="form-check-input" id="local-citizen" type="radio" name="mx-citizen" value="LCL" [(ngModel)]="content.mxCitizen" [checked]="content.mxCitizen === 'LCL'">
-                <label class="form-check-label">
-                  Local
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" id="other-citizen" type="radio" name="mx-citizen" value="OTH" [(ngModel)]="content.mxCitizen">
-                <label class="form-check-label">
-                  Other
-                </label>
-              </div>
+            <div class="form-group col pl-1">
+              <label for="mx-login-id" class="col-form-label">Login Id</label>
+              <input type="text" class="form-control" id="mx-login-id" name="mx-login-id" [(ngModel)]="content.mxLoginId">
             </div>
-            <div class="form-group row mx-2">
-              <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
-              <label for="mx-nationality" class="col-form-label">Nationality</label>
-              <input type="text" class="form-control" id="mx-nationality" name="mx-nationality"
-                [ngModel]="content.mxNationality"
-                [value]="content.mxCitizen === 'LCL' && content.mxCountry !== '' ? content.mxCountry : ''">
+            <div class="form-group col pl-1">
+              <label for="mx-acc-id" class="col-form-label">Account Id</label>
+              <input type="text" class="form-control" id="mx-acc-id" name="mx-acc-id" [(ngModel)]="content.mxAccountId">
             </div>
-            <div class="form-group row mx-2">
+            <div class="form-group col pl-1">
               <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
               <label for="mx-address" class="col-form-label">Address</label>
-              <input type="text" class="form-control" id="mx-address">
+              <textarea class="form-control" name="mx-address" [(ngModel)]="content.mxAddress" required></textarea>
+              <!-- <input type="text" class="form-control" id="mx-address"> -->
             </div>
-            <div class="form-group row mx-2">
+            <div class="form-group col pl-1">
               <label for="mx-address-2" class="col-form-label">Address 2</label>
-              <input type="text" class="form-control" id="mx-address-2">
+              <input type="text" class="form-control" id="mx-address-2" name="mx-address-2" [(ngModel)]="content.mxAddress2">
             </div>
-            <div class="form-group row mx-2">
+            <div class="form-group col pl-1">
               <label for="mx-address-3" class="col-form-label">Address 3</label>
-              <input type="text" class="form-control" id="mx-address-3">
+              <input type="text" class="form-control" id="mx-address-3" name="mx-address-3" [(ngModel)]="content.mxAddress3">
             </div>
-            <div class="form-group row mx-2">
+            <div class="form-group col pl-1">
               <label for="mx-address-4" class="col-form-label">Address 4</label>
-              <input type="text" class="form-control" id="mx-address-4">
+              <input type="text" class="form-control" id="mx-address-4" name="mx-address-4" [(ngModel)]="content.mxAddress4" [disabled]="true">
             </div>
-            <div class="form-group row mx-2">
+            <div class="form-group col pl-1">
               <span class="mandatory col-form-label" *ngIf="true">*&nbsp;</span>
               <label for="mx-postcode" class="col-form-label">Postcode</label>
-              <input type="text" class="form-control" id="mx-postcode">
+              <input type="text" class="form-control" id="mx-postcode" name="mx-postcode" [(ngModel)]="content.mxPostcode" required>
             </div>
-            <div class="form-group row mx-2">
+            <div class="form-group col pl-1">
               <label for="mx-city" class="col-form-label">City</label>
-              <input type="text" class="form-control" id="mx-city">
+              <input type="text" class="form-control" id="mx-city" name="mx-city" [(ngModel)]="content.mxCity">
             </div>
-            <div class="form-group row mx-2">
+            <div class="form-group col pl-1">
               <label for="mx-state" class="col-form-label">State</label>
-              <input type="text" class="form-control" id="mx-state">
+              <input type="text" class="form-control" id="mx-state" name="mx-state" [(ngModel)]="content.mxState">
             </div>
           </form>
         </div>

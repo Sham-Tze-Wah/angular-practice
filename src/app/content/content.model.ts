@@ -20,4 +20,6 @@ export interface ContentModel extends Base{
     mxCountry? : string;
     mxCitizen? : string;
     dateOfBirth? : string | null;
+    joinedDate? : string | null;
+    leaveDate? : string | null;
 }
