@@ -212,12 +212,12 @@ export class ContentComponent implements OnInit, AfterViewInit{
   saveCustInfo(){
     this.content.mxNationality = this.countryList.map(selectedCountry => {
       if(selectedCountry.isChecked){
-        return selectedCountry.name;
+        return selectedCountry.name + ',';
       }
       return '';
-    })?.join(',');
+    })?.join('');
     
-    console.log(this.content.mxNationality);
+    this.content.mxNationality = this.content.mxNationality.lastIndexOf(',') > -1 ? this.content.mxNationality.replace(/,$/, '') : this.content.mxNationality;
     // this.contentService.postContent(this.content);
   }
 }
