@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class HeaderComponent {
   activeColor = true;
+  homeRoute = '/home-page';
+  custInfoRoute = '/cust-info';
+  constructor(private router: Router) { }
 
   changeColor(){
     console.log('changing color');
     this.activeColor = !this.activeColor;
+  }
+
+  activeRoute(routename: string): boolean {
+    return this.router.url.indexOf(routename) > -1;
   }
 }

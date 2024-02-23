@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -63,7 +64,8 @@ export const MY_MOMENT_FORMATS = {
     NgSelectModule,
     OwlDateTimeModule,
     BrowserAnimationsModule,
-    OwlMomentDateTimeModule
+    OwlMomentDateTimeModule,
+    HttpClientModule
   ],
   providers: [{provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS}],
   bootstrap: [AppComponent]

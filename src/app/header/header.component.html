@@ -27,7 +27,7 @@
 
 <div class="navbar navbar-expand-lg">
   <div class="nav nav-pills">
-    <a class="navbar-brand" href="#">EmpAcc</a>
+    <a class="navbar-brand" href="#" [routerLink]="homeRoute">EmpAcc</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -35,18 +35,18 @@
   </div>
 
   <ul class="nav nav-pills"> 
-    <li [ngClass]="['nav-item', 'gap-2', 'mr-auto', activeColor?'active':'inactive']" (onclick)="changeColor()">
-      <a [ngClass]="['nav-link', activeColor?'inactive':'inactive']" href="#">Home Page</a>
+    <li [ngClass]="['nav-item', 'gap-2', 'mr-auto', activeColor?'active':'inactive']" (onclick)="changeColor() ">
+      <a [ngClass]="['nav-link', activeColor?'inactive':'inactive']" href="#" [routerLink]="homeRoute">Home Page</a>
     </li>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
         aria-expanded="false">Employee Module</a>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Add Employee</a>
-        <a class="dropdown-item" href="#">Update Employee</a>
-        <a class="dropdown-item" href="#">Delete Employee</a>
+        <a class="dropdown-item" href="#" [routerLink]="custInfoRoute">Add Employee</a>
+        <a class="dropdown-item" href="#" [routerLink]="custInfoRoute">Update Employee</a>
+        <a class="dropdown-item" href="#" [routerLink]="custInfoRoute">Delete Employee</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#">Blacklist Employee</a>
+        <a class="dropdown-item" href="#" [routerLink]="custInfoRoute">Blacklist Employee</a>
       </div>
     </li>
     <li class="nav-item">
