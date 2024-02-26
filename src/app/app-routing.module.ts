@@ -6,7 +6,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   //Fallback when no prior route is matched
-  {path: '**', redirectTo: 'cust-info', pathMatch: 'full'},
+  // {path: '**', redirectTo: 'cust-info', pathMatch: 'full'},
   { path: 'cust-info', component: ContentComponent },
   { path: 'home-page', component: HomePageComponent}
 ];

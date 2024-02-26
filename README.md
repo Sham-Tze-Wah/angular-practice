@@ -26,7 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-## Small note
+## Small notes
 1. nvm use 16.14.2
 2. npm i @angular/cli@16.2.10 -g
 3. npm i @ng-bootstrap/ng-bootstrap@15.1.2
@@ -42,3 +42,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 13. -- Toaster, Pop up confirmation and spinner
 14. npm i ngx-spinner@16.0.2
 15. npm i sweetalert2
+16. Home page: https://startbootstrap.com/previews/agency
