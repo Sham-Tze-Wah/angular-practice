@@ -27,6 +27,7 @@
     <th>State</th>
     <th>Zip</th>
     <th>Country</th>
+    <th></th>
   </thead>
   <tbody class="tbody-light">
     <tr scope="row" *ngFor="let content of contents">
@@ -39,6 +40,10 @@
       <td>{{content.mxState}}</td>
       <td>{{content.mxPostcode}}</td>
       <td>{{content.mxCountry}}</td>
+      <td>
+        <button type="button" class="btn btn-secondary mr-1 btn-sm" (click)="openDialog(modalCenter)">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="deleteCustInfo()">Delete <i class="fa fa-trash" aria-hidden="true"></i></button>
+      </td>
     </tr>
   </tbody>
 </table>

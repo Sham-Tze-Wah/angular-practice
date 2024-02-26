@@ -263,4 +263,8 @@ export class ContentComponent implements OnInit, AfterViewInit{
         }
       });
   }
+
+  deleteCustInfo(){
+    console.log("Soft Delete Customer Info");
+  }
 }
