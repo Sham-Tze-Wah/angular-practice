@@ -8,7 +8,9 @@ import { GenericModel } from '../shared/models/generic.model';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import{ NgForm, NgModel } from '@angular/forms';
 import * as moment from 'moment';
-//import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { default as swal } from 'sweetalert2';
 
 @Component({
   selector: 'app-content',
@@ -44,16 +46,27 @@ export class ContentComponent implements OnInit, AfterViewInit{
     {id: '3', name: 'Other', code: 'OTH'}
   ]
 
-  constructor(private contentService: ContentService, public dialog: MatDialog, private modalService: NgbModal) {
+  constructor(
+    private contentService: ContentService, 
+    public dialog: MatDialog, 
+    private modalService: NgbModal,
+    private toastrService: ToastrService,
+    private spinner: NgxSpinnerService
+    ) {
     
    }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.contentService.getContent().subscribe((contents) => 
       this.contents = contents
       );
     this.content.mxCitizen = 'LCL';
     console.log(this.ntnChkboxErrorMsg);
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 1000);
   }
 
   ngAfterViewInit(): void {
@@ -161,6 +174,10 @@ export class ContentComponent implements OnInit, AfterViewInit{
   //     }
   //   }
   // }
+  closeModal(modal : any){
+    this.modalService.dismissAll();
+    this.toastrService.info('The modal is closed.', 'info');
+  }
 
   closeAddrDial(event: any){
     // console.log(event);
@@ -218,6 +235,32 @@ export class ContentComponent implements OnInit, AfterViewInit{
     })?.join('');
     
     this.content.mxNationality = this.content.mxNationality.lastIndexOf(',') > -1 ? this.content.mxNationality.replace(/,$/, '') : this.content.mxNationality;
+    swal.fire(
+      'Success',
+      `Customer Info added successfully!!`,
+      'success'
+    );
     // this.contentService.postContent(this.content);
+  }
+
+  closeBeforeSubmission(addrModal : any){
+    swal
+      .fire({
+        title: 'Are you sure?',
+        html: `Please confirm to exit now. <strong class="text-warning"> Your data will not be saved.</strong>`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+      })
+      .then((result: any) => {
+        if (result.value) {
+          this.spinner.show();
+          this.modalService.dismissAll();
+          this.spinner.hide();
+        } else if (result.dismiss === swal.DismissReason.cancel) {
+          console.log('Cancelled the dialog');
+        }
+      });
   }
 }

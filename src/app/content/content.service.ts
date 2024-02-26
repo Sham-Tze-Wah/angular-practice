@@ -5,7 +5,7 @@ import {Observable, of} from 'rxjs'
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { default as swal } from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'

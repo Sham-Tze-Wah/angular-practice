@@ -1,4 +1,5 @@
 <!-- Row 2: Search Bar -->
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "pacman" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 <div>
   <nav class="navbar navbar-light bg-light justify-content-end">
     <form class="form-inline">
@@ -255,7 +256,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#modalCenter" (click)="modal.dismiss('Cross click')">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#modalCenter" (click)="closeModal(modalCenter)">Close</button>
         <button type="button" class="btn btn-primary" (click)="openDialog(addrTempModal)" 
         
         >Next <i class="fa fa-arrow-right fa-lg" aria-hidden="true"></i>
@@ -331,7 +332,7 @@
               <i class="fa fa-arrow-left" aria-hidden="true"></i> Previous
             </button>
           </div>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#addrModal" (click)="modal.dismiss('Cross click')">Close</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#addrModal" (click)="closeBeforeSubmission(addrModal)">Close</button>
           <button type="button" class="btn btn-primary" (click)="saveCustInfo()">Submit</button>
         </div>
     <!--   </div>
