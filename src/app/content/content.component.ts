@@ -115,6 +115,16 @@ export class ContentComponent implements OnInit, AfterViewInit{
     }
   }
 
+  addAnimation(event: any, classListStr: string[]): void{
+    console.log(event);
+    event.target.children[0].classList.add(classListStr);
+  }
+
+  removeAnimation(event: any, classListStr: string[]): void{
+    console.log(event.target);
+    event.target.children[0].classList.remove(classListStr);
+  }
+
   // openDialog(modalStr: string) {
   //   console.log(modalStr);
   //   this.modalService.dismissAll();
