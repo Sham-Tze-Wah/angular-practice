@@ -31,6 +31,8 @@ export class ContentComponent implements OnInit, AfterViewInit{
   closeResult: string = "Close Result";
   maxDate = moment().add(1,'minute').toDate();
   minDate = moment().subtract(150, 'years').toDate();
+  attachments?: any[] = [];
+  files: File[] = [];
 
   content: ContentModel = {};
   contents : ContentModel[] = CONTENT;
@@ -85,6 +87,8 @@ export class ContentComponent implements OnInit, AfterViewInit{
   //   }
   // }
 
+  /* User Interface Function & CSS Manipulation */
+
   onlyNumber(event: any){
     var charCode = event.which ? event.which : event.keyCode;
     if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -124,6 +128,24 @@ export class ContentComponent implements OnInit, AfterViewInit{
     console.log(event.target);
     event.target.children[0].classList.remove(classListStr);
   }
+
+  /* User Function & Error Handling */
+
+  onUploadSuccess(event: any){
+    console.log(event);
+    if(this.files.length + event.addedFiles.length > 2){
+      this.toastrService.error('Maximum 3 files allowed', 'Error');
+    }
+    else{
+      this.files.push(...event.addedFiles);
+    }
+  }
+
+  onRemove(event: any){
+    console.log(event);
+    this.files.splice(this.files.indexOf(event), 1);
+  }
+ 
 
   // openDialog(modalStr: string) {
   //   console.log(modalStr);
@@ -227,6 +249,8 @@ export class ContentComponent implements OnInit, AfterViewInit{
     }
     return false;
   }
+
+  /* API Invocation */
 
   onSubmit(content: any){
     

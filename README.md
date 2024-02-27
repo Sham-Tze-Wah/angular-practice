@@ -42,4 +42,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 13. -- Toaster, Pop up confirmation and spinner
 14. npm i ngx-spinner@16.0.2
 15. npm i sweetalert2
-16. Home page: https://startbootstrap.com/previews/agency
+16. npm i ngx-dropzone-compressing
+17. Home page: https://startbootstrap.com/previews/agency

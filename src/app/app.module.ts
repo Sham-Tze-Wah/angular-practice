@@ -27,6 +27,7 @@ import { OwlDateTimeModule, OWL_DATE_TIME_FORMATS} from '@danielmoncada/angular-
 import { OwlMomentDateTimeModule } from '@danielmoncada/angular-datetime-picker-moment-adapter';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import {NgxDropzoneModule} from 'ngx-dropzone-compressing'
 
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
@@ -39,6 +40,7 @@ export const MY_MOMENT_FORMATS = {
   dateA11yLabel: 'LL',
   monthYearA11yLabel: 'MMMM YYYY',
 };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,9 +71,11 @@ export const MY_MOMENT_FORMATS = {
     OwlMomentDateTimeModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxDropzoneModule
   ],
-  providers: [{provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS}],
+  providers: [{provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
