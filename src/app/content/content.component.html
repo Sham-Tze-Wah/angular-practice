@@ -227,7 +227,7 @@
               name="mx-country" id="mx-country" [(ngModel)]="content.mxCountry" (change)="onChangeMxCountry($event)" required>
             </ng-select>
           </div>
-          <div class="form-group mx-2">
+          <div class="form-group col pl-1">
             <span class="mandatory" *ngIf="true">*&nbsp;</span>
              <label for="mx-citizen" class="col-form-label">Citizenship</label>
             <!--<ng-select placeholder="Select Citizenship" [items]="citizenshipList" bindLabel="name" bindValue="code"
@@ -257,6 +257,13 @@
             </div>
             <div *ngIf="!globalAtLeastOneChecked() && ntnChkboxErrorMsg" class="error-messages">
               Please select at least one country.
+            </div>
+          </div>
+          <div class="form-group col pl-1">
+            <label class="col-form-label">Attachments</label>
+            <div class="custom-file mb-3">
+              <input type="file" class="custom-file-input" id="customFile" name="filename">
+              <label class="custom-file-label" for="customFile">Choose file</label>
             </div>
           </div>
         </form>
