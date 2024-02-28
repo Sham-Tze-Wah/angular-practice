@@ -133,6 +133,9 @@ export class ContentComponent implements OnInit, AfterViewInit{
 
   onUploadSuccess(event: any){
     console.log(event);
+    if(event.rejectedFiles.length > 0){
+      this.toastrService.error('Please check the uploaded file. It is rejected.', 'Error');
+    }
     if(this.files.length + event.addedFiles.length > 2){
       this.toastrService.error('Maximum 3 files allowed', 'Error');
     }
