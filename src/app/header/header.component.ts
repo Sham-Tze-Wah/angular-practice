@@ -11,6 +11,7 @@ export class HeaderComponent {
   activeColor = true;
   homeRoute = '/home-page';
   custInfoRoute = '/cust-info';
+  dashboardRoute = '/dashboard-page';
   constructor(private router: Router) { }
 
   changeColor(){
