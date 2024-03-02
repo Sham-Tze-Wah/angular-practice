@@ -44,5 +44,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 15. npm i sweetalert2
 16. npm i ngx-dropzone-compressing
 17. Home page: https://startbootstrap.com/previews/agency
-18. Dashboard: 
-19. 
+18. Dashboard: npm i echarts
+19. Dashboard: npm i ngx-echarts@16.2.0
+20. 

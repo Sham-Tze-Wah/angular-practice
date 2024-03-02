@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { NgbModule, NgbDatepickerModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContentComponent } from './content/content.component';
@@ -28,7 +29,7 @@ import { OwlMomentDateTimeModule } from '@danielmoncada/angular-datetime-picker-
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {NgxDropzoneModule} from 'ngx-dropzone-compressing'
-
+import {NgxEchartsModule } from 'ngx-echarts';
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
 export const MY_MOMENT_FORMATS = {
@@ -47,7 +48,8 @@ export const MY_MOMENT_FORMATS = {
     HeaderComponent,
     HomePageComponent,
     ContentComponent,
-    DialogFormComponent
+    DialogFormComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,15 @@ export const MY_MOMENT_FORMATS = {
     HttpClientModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    NgxEchartsModule.forRoot({
+      /**
+       * This will import all modules from echarts.
+       * If you only need custom modules,
+       * please refer to [Custom Build] section.
+       */
+      echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+    }),
   ],
   providers: [{provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS},
   ],

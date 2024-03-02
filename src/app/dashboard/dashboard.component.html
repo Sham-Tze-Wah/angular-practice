@@ -1,1 +1,74 @@
-<div class="container" #dashboard></div>
+<!-- <div echarts [options]="chartOption" class="demo-chart ml-5" style="height: 400px; width: 400px;"> -->
+<!-- </div> -->
+<hr class="border-gray" />
+<div class="container">
+    <h3 class="text-primary">Dashboard</h3>
+    <div class="row d-flex justify-content-between">
+        <div class="col-lg-4 d-inline-flex justify-content-center flex-column">
+            <div class="d-flex justify-content-start card-header border">
+                <h4 class="title">Daily Traffic Tracking</h4>
+            </div>
+            <div class="d-flex justify-content-center card-body border" style="height: auto; width: auto;">
+                <div echarts [options]="chartOption" class="demo-chart" style="height: 250px; width: 400px;"></div>
+            </div>
+        </div>
+        <div></div>
+        <div class="col-lg-4 d-flex justify-content-center flex-column">
+            <div class="d-flex justify-content-start card-header">
+                <h4 class="title">Monthly Target </h4>
+            </div>
+            <div class="d-flex justify-content-center card-body border">
+                <div id="targetGauge" style="width: 450px; height: 275px;"></div>
+            </div>
+        </div>
+        <div></div>
+        <div class="col-lg-4 d-flex justify-content-center flex-column">
+            <div class="d-flex justify-content-start card-header">
+                <h4 class="title">Overall Year Performance</h4>
+            </div>
+            <div class="d-flex justify-content-center card-body border">
+                <!-- <div class="button-groups">
+                    <button class="btn btn-primary" (click)="RandomDataset()" nz-button nzType="default">Random Dataset</button>
+                  </div> -->
+                  <div echarts [options]="options" [merge]="mergeOptions" class="demo-chart" style="height: 275px; width: 400px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- https://echarts.apache.org/examples/en/index.html#chart-type-line -->
+<!-- References: https://blog.zingsoft.com/content/images/2020/02/Angular-Dashboard-1.png -->
+<div class="container mt-4">
+    <h3 class="title text-primary">Pending Approval</h3>
+    <!-- <div class="">
+        <h1 class="title">Pending Approval</h1>
+    </div> -->
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+              <th>Name</th>
+              <th>IdNo</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>State</th>
+              <th>Zip</th>
+              <th>Country</th>
+            </thead>
+            <tbody class="tbody-light">
+              <tr scope="row" *ngFor="let content of contents">
+                <td>{{content.mxName}}</td>
+                <td>{{content.mxIdNo}}</td>
+                <td>{{content.mxEmail}}</td>
+                <td>{{content.mxHandPhoneNo}}</td>
+                <td>{{content.mxAddress}}</td>
+                <td>{{content.mxCity}}</td>
+                <td>{{content.mxState}}</td>
+                <td>{{content.mxPostcode}}</td>
+                <td>{{content.mxCountry}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
