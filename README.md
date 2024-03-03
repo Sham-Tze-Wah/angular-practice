@@ -46,4 +46,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 17. Home page: https://startbootstrap.com/previews/agency
 18. Dashboard: npm i echarts
 19. Dashboard: npm i ngx-echarts@16.2.0
-20. 
+20. Add Proxy: npm i https-proxy-agent
+21. 

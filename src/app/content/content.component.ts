@@ -272,12 +272,19 @@ export class ContentComponent implements OnInit, AfterViewInit{
     })?.join('');
     
     this.content.mxNationality = this.content.mxNationality.lastIndexOf(',') > -1 ? this.content.mxNationality.replace(/,$/, '') : this.content.mxNationality;
+    
+    this.contentService.postContent(this.content).subscribe(
+      (result) => {
+        this.ngOnInit();
+      });
+    this.modalService.dismissAll();
+
     swal.fire(
       'Success',
       `Customer Info added successfully!!`,
       'success'
     );
-    // this.contentService.postContent(this.content);
+    
   }
 
   closeBeforeSubmission(addrModal : any){

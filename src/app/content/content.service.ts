@@ -12,10 +12,10 @@ import { default as swal } from 'sweetalert2';
 })
 export class ContentService {
 
-  private baseURL = `http://localhost:3000/api`;
+  private baseURL = `http://localhost:9006/ecommerce`;
 
   constructor(private sanitizer: DomSanitizer, private spinner: NgxSpinnerService, 
-    // private http: HttpClient
+    private http: HttpClient
     ) {}
 
   getContent() : Observable<any> {
@@ -24,8 +24,9 @@ export class ContentService {
     // return this.http.get(`${this.baseURL}/getAll`)
   }
 
-  // postContent(content: ContentModel): Observable<any> {
-  //   console.log(content);
-  //   return this.http.post(`${this.baseURL}/post`, content)
-  // }
+  postContent(content: ContentModel): Observable<any> {
+    // console.log(content);
+    return this.http.post(`/ecommerce/api/test/customerInfo`, content);
+    
+  }
 }
