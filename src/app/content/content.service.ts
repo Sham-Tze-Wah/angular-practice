@@ -12,21 +12,21 @@ import { default as swal } from 'sweetalert2';
 })
 export class ContentService {
 
-  private baseURL = `http://localhost:9006/ecommerce`;
+  private basePath = `/ecommerce/api/test`;
 
   constructor(private sanitizer: DomSanitizer, private spinner: NgxSpinnerService, 
     private http: HttpClient
     ) {}
 
   getContent() : Observable<any> {
-    const contents = of(CONTENT);
-    return contents;
-    // return this.http.get(`${this.baseURL}/getAll`)
+    // const contents = of(CONTENT);
+    // return contents;
+    return this.http.get(`${this.basePath}/customerInfo`)
   }
 
   postContent(content: ContentModel): Observable<any> {
-    // console.log(content);
-    return this.http.post(`/ecommerce/api/test/customerInfo`, content);
+    console.log(content);
+    return this.http.post(`${this.basePath}/customerInfo`, content);
     
   }
 }

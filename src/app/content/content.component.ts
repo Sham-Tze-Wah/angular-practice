@@ -35,7 +35,7 @@ export class ContentComponent implements OnInit, AfterViewInit{
   files: File[] = [];
 
   content: ContentModel = {};
-  contents : ContentModel[] = CONTENT;
+  contents : any[] = [];
 
   countryList : GenericModel[] = [
     {id: '1', name:'Malaysia (MY)', code: 'MY', isChecked: false},
@@ -60,11 +60,9 @@ export class ContentComponent implements OnInit, AfterViewInit{
 
   ngOnInit(): void {
     this.spinner.show();
-    this.contentService.getContent().subscribe((contents) => 
-      this.contents = contents
-      );
+    this.getCustInfo();
     this.content.mxCitizen = 'LCL';
-    console.log(this.ntnChkboxErrorMsg);
+    // console.log(this.ntnChkboxErrorMsg);
     setTimeout(() => {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
@@ -120,13 +118,17 @@ export class ContentComponent implements OnInit, AfterViewInit{
   }
 
   addAnimation(event: any, classListStr: string[]): void{
-    console.log(event);
-    event.target.children[0].classList.add(classListStr);
+    // console.log(event);
+    if(event.target.children[0].classList !== undefined){
+      event.target.children[0].classList.add(classListStr);
+    }
   }
 
   removeAnimation(event: any, classListStr: string[]): void{
-    console.log(event.target);
-    event.target.children[0].classList.remove(classListStr);
+    // console.log(event.target);
+    if(event.target.children[0].classList !== undefined){
+      event.target.children[0].classList.remove(classListStr);
+    }
   }
 
   /* User Function & Error Handling */
@@ -145,7 +147,7 @@ export class ContentComponent implements OnInit, AfterViewInit{
   }
 
   onRemove(event: any){
-    console.log(event);
+    // console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
   }
  
@@ -261,6 +263,40 @@ export class ContentComponent implements OnInit, AfterViewInit{
 
   onChangeDob(event: any){
     console.log(this.dtLeave);
+  }
+
+  getCustInfo(){
+    let index = 0;
+    this.contents = [];
+    this.contentService.getContent().subscribe(
+      (result: any) => {
+        console.log(result);
+        for(let element of result){
+          let current: ContentModel = {};
+          current.mxName = element.mxName;
+          current.mxIdNo = element.mxIdNo;
+          current.mxHandPhoneNo = element.mxHandPhoneNo;
+          current.mxEmail = element.mxEmail;
+          current.mxLoginId = element.mxLoginId;
+          current.mxAccountId = element.mxAccountId;
+          current.extendedInfo = element.extendedInfo;
+          current.mxNationality = element.mxNationality;
+          current.mxAddress = element.mxAddress;
+          current.mxAddress2 = element.mxAddress2;
+          current.mxAddress3 = element.mxAddress3;
+          current.mxAddress4 = element.mxAddress4;
+          current.mxCity = element.mxCity;
+          current.mxPostcode = element.mxPostcode;
+          current.mxState = element.mxState;
+          current.mxCountry = element.mxCountry;
+          current.mxCitizen = element.mxCitizen;
+          current.dateOfBirth = element.dateOfBirth;
+          current.joinedDate = element.joinedDate;
+          current.leaveDate = element.leaveDate;
+          this.contents.push(current);
+        }
+      });
+      console.log(this.contents);
   }
 
   saveCustInfo(){
