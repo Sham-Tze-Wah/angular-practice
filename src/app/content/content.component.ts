@@ -38,9 +38,9 @@ export class ContentComponent implements OnInit, AfterViewInit{
   contents : any[] = [];
 
   countryList : GenericModel[] = [
-    {id: '1', name:'Malaysia (MY)', code: 'MY', isChecked: false},
-    {id: '2', name: 'Singapore (SG)', code: 'SG', isChecked: false},
-    {id: '3', name: 'India (IND)', code:'IND', isChecked: false}
+    {id: '1', name:'Malaysia', code: 'MY', isChecked: false},
+    {id: '2', name: 'Singapore', code: 'SG', isChecked: false},
+    {id: '3', name: 'India', code:'IND', isChecked: false}
   ];
 
   citizenshipList : GenericModel[] = [
@@ -67,6 +67,10 @@ export class ContentComponent implements OnInit, AfterViewInit{
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 1000);
+  }
+
+  getCountryList(){
+    this.countryList
   }
 
   ngAfterViewInit(): void {

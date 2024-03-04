@@ -30,6 +30,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {NgxDropzoneModule} from 'ngx-dropzone-compressing'
 import {NgxEchartsModule } from 'ngx-echarts';
+import { LoginComponent } from './login/login.component';
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
 export const MY_MOMENT_FORMATS = {
@@ -49,7 +50,8 @@ export const MY_MOMENT_FORMATS = {
     HomePageComponent,
     ContentComponent,
     DialogFormComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -4,13 +4,15 @@ import { ContentComponent } from './content/content.component';
 import { HeaderComponent } from './header/header.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   //Fallback when no prior route is matched
-  // {path: '**', redirectTo: 'cust-info', pathMatch: 'full'},
+  {path: '**', redirectTo: 'login', pathMatch: 'full'},
   { path: 'cust-info', component: ContentComponent },
   { path: 'home-page', component: HomePageComponent},
-  {path: 'dashboard-page', component: DashboardComponent}
+  {path: 'dashboard-page', component: DashboardComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

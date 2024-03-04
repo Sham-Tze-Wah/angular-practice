@@ -252,7 +252,7 @@
             <label for="mx-nationality" class="col-form-label">Nationality</label>
             <div *ngFor="let nationality of countryList">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" name="mx-nationality" [value]="nationality.name" (change)="onChangeNationality($event)" [checked]="globalIfChecked(nationality.name)" />{{nationality.name}}
+                <input class="form-check-input" type="checkbox" name="mx-nationality" [value]="nationality.name" (change)="onChangeNationality($event)" [checked]="globalIfChecked(nationality.name)" />{{nationality.name + " (" + nationality.code + ")"}}
               </div>
             </div>
             <div *ngIf="!globalAtLeastOneChecked() && ntnChkboxErrorMsg" class="error-messages">
