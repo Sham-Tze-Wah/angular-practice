@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<!-- <div class="container">
     <h2>Registration</h2>
     <form>
         <div class="form-group">
@@ -18,5 +18,33 @@
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
     <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
-</div>
+</div> -->
+
+<div class="background-wrap">
+    <div class="background"></div>
+  </div>
+  <div style="display:block;z-index:999;">image</div>
+  <form id="accesspanel" action="login" method="post">
+    <h1 id="litheader">User Login</h1>
+    <div class="inset">
+      <p>
+        <input type="text" name="username" id="email" placeholder="Email address">
+      </p>
+      <p>
+        <input type="password" name="password" id="password" placeholder="Access code">
+      </p>
+      <div style="text-align: center;">
+        <div class="checkboxouter">
+          <input type="checkbox" name="rememberme" id="remember" value="Remember">
+          <label class="checkbox"></label>
+        </div>
+        <label for="remember">Remember me &nbsp;<i class="fa fa-archive" aria-hidden="true"></i></label>
+      </div>
+      <input class="loginLoginValue" type="hidden" name="service" value="login" />
+    </div>
+    <p class="p-container">
+        <button class="btn-authorize" type="button">Authorize</button>
+      <!-- <input type="submit" name="Login" id="go" value="Authorize"> -->
+    </p>
+  </form>
 
