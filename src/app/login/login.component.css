@@ -197,7 +197,7 @@ form {
   border-radius: .4em;
   bottom: 0;
   box-shadow: 0 5px 10px 5px rgba(0,0,0,0.2);
-  height: 300px;
+  height: 530px;
   left: 0;
   margin: auto;
   overflow: hidden;
@@ -413,6 +413,16 @@ input[type="checkbox"]:checked ~ .checkbox {
   border-bottom: 2px solid #ffcc00;
   border-right: 2px solid #ffcc00;
 }
+
+.login-text{
+  color: #fff;
+  font-size: 15px;
+}
+
+.link{
+  cursor: pointer;
+}
+
 
 @keyframes neon {
   from {
