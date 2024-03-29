@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -32,6 +32,7 @@ import {NgxDropzoneModule} from 'ngx-dropzone-compressing'
 import {NgxEchartsModule } from 'ngx-echarts';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { CustomeInterceptor } from './shared/services/custome.interceptor';
 // See the Moment.js docs for the meaning of these formats:
 // https://momentjs.com/docs/#/displaying/format/
 export const MY_MOMENT_FORMATS = {
@@ -89,6 +90,7 @@ export const MY_MOMENT_FORMATS = {
     }),
   ],
   providers: [{provide: OWL_DATE_TIME_FORMATS, useValue: MY_MOMENT_FORMATS},
+  {provide: HTTP_INTERCEPTORS, useClass:CustomeInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

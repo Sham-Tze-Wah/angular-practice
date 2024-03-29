@@ -13,6 +13,13 @@ const proxyConfig = [
     target: 'http://localhost:9006/ecommerce',
     changeOrigin: true,
     secure: false
+  },
+  {
+    context: '/account',
+    pathRewrite: { '^/account': '' },
+    target: 'http://localhost:9005/account',
+    changeOrigin: true,
+    secure: false
   }
 //   {
 //     context: '/case',
