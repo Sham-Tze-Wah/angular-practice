@@ -48,3 +48,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 19. Dashboard: npm i ngx-echarts@16.2.0
 20. Add Proxy: npm i https-proxy-agent
 21. ng g interceptor custom
+
+
+pipeline = top level
+agent = where to execute
+stages = where the work happens 
